@@ -6,7 +6,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
+        "FelipeLema/cmp-async-path",
         "hrsh7th/cmp-cmdline",
         "hrsh7th/nvim-cmp",
         "L3MON4D3/LuaSnip",
@@ -47,11 +47,12 @@ return {
                 { name = "luasnip" }, -- For luasnip users.
             }, {
                 { name = "buffer" },
+                { name = "async_path" },
             }),
             formatting = {
                 format = lspkind.cmp_format({
                     mode = 'symbol', -- show only symbol annotations
-                    maxwidth = 50,   -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                    maxwidth = 80,   -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
                     -- can also be a function to dynamically calculate max width such as
                     -- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
                     ellipsis_char = '...',    -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
@@ -59,21 +60,27 @@ return {
                 })
             }
         })
-        -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-        cmp.setup.cmdline({ '/', '?' }, {
+
+        -- `/` cmdline setup.
+        cmp.setup.cmdline('/', {
             mapping = cmp.mapping.preset.cmdline(),
             sources = {
                 { name = 'buffer' }
             }
         })
 
-        -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+        -- `:` cmdline setup.
         cmp.setup.cmdline(':', {
             mapping = cmp.mapping.preset.cmdline(),
             sources = cmp.config.sources({
                 { name = 'path' }
             }, {
-                { name = 'cmdline' }
+                {
+                    name = 'cmdline',
+                    option = {
+                        ignore_cmds = { 'Man', '!' }
+                    }
+                }
             })
         })
 
