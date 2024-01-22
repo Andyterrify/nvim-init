@@ -10,6 +10,20 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, {})
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", {})
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", {})
 
+-- Remap for dealing with word wrap
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- quicker buffers
+vim.keymap.set('n', '<C-m>', ":bn<CR>", { noremap = true, desc = "Next Buffer" })
+vim.keymap.set('n', '<C-n>', ":bp<CR>", { noremap = true, desc = "Previous Buffer" })
+
+-- quicker buffers
+vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true, desc = "Move to left window" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { noremap = true, desc = "Move to up window" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { noremap = true, desc = "Move to down window" })
+vim.keymap.set("n", "<C-h>", "<C-w>h", { noremap = true, desc = "Move to right window" })
+
 -- Faster exit
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Esc" })
 
@@ -37,8 +51,8 @@ vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 -- next and previous diagnotic
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<C-]>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-[>", "<cmd>cprev<CR>zz")
 -- next and prev location list
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
@@ -50,11 +64,15 @@ vim.keymap.set({"n", "v"}, "<leader>x", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
+-- Open fugitive to the side
 vim.keymap.set("n", "<leader>G", "<cmd>vert Git<CR>", {})
-
+-- Toggle unfotree
 vim.keymap.set("n", "<leader>ut", "<cmd>UndotreeToggle<CR>", {})
+-- Search project TODOs
+vim.keymap.set('n', '<leader>sn', ":TodoTelescope<CR>", { noremap = true, desc = "[S]earch [N]otes" })
 
-
+-- attach LSP keybindings
+-- https://github.com/neovim/nvim-lspconfig#suggested-configuration
 vim.api.nvim_create_autocmd('LspAttach', {
     group = AndyterrifyGroup,
     callback = function(e)
