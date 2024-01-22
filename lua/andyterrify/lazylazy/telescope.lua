@@ -47,6 +47,8 @@ return {
       vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, {})
       -- search available buffers
       vim.keymap.set("n", "<leader><leader>b", builtin.buffers, {})
+      -- resume search
+      vim.keymap.set("n", "<leader>sr", builtin.resume, {})
 
     end
   }
