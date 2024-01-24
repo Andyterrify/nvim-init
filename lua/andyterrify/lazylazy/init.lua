@@ -4,6 +4,8 @@
 return {
   -- Just in case
   -- 'tpope/vim-sleuth',
+  -- Lazy
+
   {
     "folke/tokyonight.nvim",
     lazy = false,    -- make sure we load this during startup if it is your main colorscheme
@@ -20,14 +22,18 @@ return {
   },
   "mbbill/undotree",
 
-  "tpope/vim-fugitive",
+  {
+    "tpope/vim-fugitive",
+    event = "VeryLazy"
+  },
 
   {
     'jinh0/eyeliner.nvim',
+    event = "InsertEnter",
     config = function()
       require 'eyeliner'.setup {
         highlight_on_key = true, -- show highlights only after keypress
-        dim = true            -- dim all other characters if set to true (recommended!)
+        dim = true               -- dim all other characters if set to true (recommended!)
       }
     end
   },
@@ -46,12 +52,12 @@ return {
     },
   },
 
-  {
-    'anuvyklack/pretty-fold.nvim',
-    config = function()
-      require("pretty-fold").setup({})
-    end
-  },
+  -- {
+  --   'anuvyklack/pretty-fold.nvim',
+  --   config = function()
+  --     require("pretty-fold").setup({})
+  --   end
+  -- },
 
   {
     "folke/which-key.nvim",
@@ -67,27 +73,38 @@ return {
     }
   },
 
-  -- {
-  --   "epwalsh/obsidian.nvim",
-  --   version = "*", -- recommended, use latest release instead of latest commit
-  --   lazy = true,
-  --   ft = "markdown",
-  --   -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-  --   -- event = {
-  --   --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-  --   --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
-  --   --   "BufReadPre path/to/my-vault/**.md",
-  --   --   "BufNewFile path/to/my-vault/**.md",
-  --   -- },
-  --   dependencies = {
-  --     -- Required.
-  --     "nvim-lua/plenary.nvim",
-  --     "hrsh7th/nvim-cmp",
-  --     "nvim-telescope/telescope.nvim",
-  --     "nvim-treesitter/nvim-treesitter"
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*", -- recommended, use latest release instead of latest commit
+    lazy = true,
+    ft = "markdown",
+    event = "VeryLazy",
+    -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
+    -- event = {
+    --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
+    --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
+    --   "BufReadPre /home/avasile/Documents/obsidian/personal-vault/**.md",
+    --   "BufNewFile /home/avasile/Documents/Obsidian/General Vault/**.md",
+    -- },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    opts = {
+      workspaces = {
+        {
+          name = "personal",
+          path = "/home/avasile/Documents/obsidian/personal-vault",
+        },
+      },
+      notes_subdir = "notes",
 
-  --     -- see below for full list of optional dependencies 👇
-  --   }
-  -- }
+      -- copletion = {
+      --   nvim_cmp = true,
+      --   min_chars = 2,
+      --   new_notes_location = "notes_subdir"
+      -- }
+    }
+  }
 
 }
