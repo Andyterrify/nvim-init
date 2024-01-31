@@ -19,12 +19,15 @@ return {
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("todo-comments").setup({})
+    end
   },
   "mbbill/undotree",
 
   {
     "tpope/vim-fugitive",
-    event = "VeryLazy"
+    -- event = "VeryLazy"
   },
 
   {
@@ -59,26 +62,26 @@ return {
   --   end
   -- },
 
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    init = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-    end,
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    }
-  },
+  -- {
+  --   "folke/which-key.nvim",
+  --   -- event = "VeryLazy",
+  --   init = function()
+  --     vim.o.timeout = true
+  --     vim.o.timeoutlen = 300
+  --   end,
+  --   opts = {
+  --     -- your configuration comes here
+  --     -- or leave it empty to use the default settings
+  --     -- refer to the configuration section below
+  --   }
+  -- },
 
   {
     "epwalsh/obsidian.nvim",
     version = "*", -- recommended, use latest release instead of latest commit
     lazy = true,
     ft = "markdown",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
     -- event = {
     --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
@@ -105,6 +108,16 @@ return {
       --   new_notes_location = "notes_subdir"
       -- }
     }
-  }
+  },
 
+  -- {
+  --   'Bekaboo/dropbar.nvim',
+  --   -- optional, but required for fuzzy finder support
+  --   dependencies = {
+  --     'nvim-telescope/telescope-fzf-native.nvim'
+  --   },
+  --   keys = {
+  --     { "<leader>.", function() require("dropbar.api").pick() end, {} }
+  --   },
+  -- }
 }
