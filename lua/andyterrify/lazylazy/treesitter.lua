@@ -1,10 +1,11 @@
 -- vim: ts=2 sts=2 sw=2 et
 return {
   "nvim-treesitter/nvim-treesitter",
+  tag = "v0.9.2",
   build = ":TSUpdate",
-	config = function()
+  config = function()
     require("nvim-treesitter.configs").setup({
-      ensure_installed = {"c", "lua", "vim", "vimdoc", "python", "rust",'markdown', 'markdown_inline'},
+      ensure_installed = { "c", "lua", "vim", "vimdoc", "python", "rust", 'markdown', 'markdown_inline' },
 
       auto_install = true,
 

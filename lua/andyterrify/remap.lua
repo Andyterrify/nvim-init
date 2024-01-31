@@ -42,10 +42,10 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- next greatest remap ever : asbjornHaland
 -- yanks into system clipboard
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
@@ -58,7 +58,7 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- disable highlighting
-vim.keymap.set({"n", "v"}, "<leader>x", "<cmd>nohlsearch<CR>")
+vim.keymap.set({ "n", "v" }, "<leader>x", "<cmd>nohlsearch<CR>")
 
 -- search and modify all occurendes of the word under cursor
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
@@ -71,21 +71,19 @@ vim.keymap.set("n", "<leader>ut", "<cmd>UndotreeToggle<CR>", {})
 -- Search project TODOs
 vim.keymap.set('n', '<leader>sn', ":TodoTelescope<CR>", { noremap = true, desc = "[S]earch [N]otes" })
 
--- -- attach LSP keybindings
--- -- https://github.com/neovim/nvim-lspconfig#suggested-configuration
--- vim.api.nvim_create_autocmd('LspAttach', {
---     group = AndyterrifyGroup,
---     callback = function(e)
---         local opts = {buffer = e.buf}
---         vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
---         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
---         vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
---         vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
---         vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
---         vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
---         vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
---         vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
---     end
--- })
--- 
--- 
+-- attach LSP keybindings
+-- https://github.com/neovim/nvim-lspconfig#suggested-configuration
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = AndyterrifyGroup,
+    callback = function(e)
+        local opts = { buffer = e.buf }
+        vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
+        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+        vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
+        vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
+        vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
+        vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
+        vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+        vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+    end
+})

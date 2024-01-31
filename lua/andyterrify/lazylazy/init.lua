@@ -32,7 +32,7 @@ return {
 
   {
     'jinh0/eyeliner.nvim',
-    event = "InsertEnter",
+    -- event = "InsertEnter",
     config = function()
       require 'eyeliner'.setup {
         highlight_on_key = true, -- show highlights only after keypress
@@ -55,26 +55,19 @@ return {
     },
   },
 
-  -- {
-  --   'anuvyklack/pretty-fold.nvim',
-  --   config = function()
-  --     require("pretty-fold").setup({})
-  --   end
-  -- },
-
-  -- {
-  --   "folke/which-key.nvim",
-  --   -- event = "VeryLazy",
-  --   init = function()
-  --     vim.o.timeout = true
-  --     vim.o.timeoutlen = 300
-  --   end,
-  --   opts = {
-  --     -- your configuration comes here
-  --     -- or leave it empty to use the default settings
-  --     -- refer to the configuration section below
-  --   }
-  -- },
+  {
+    "folke/which-key.nvim",
+    -- event = "VeryLazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  },
 
   {
     "epwalsh/obsidian.nvim",
@@ -110,6 +103,8 @@ return {
     }
   },
 
+  -- I like it, and want to use, but it requires nvim 0.10 and that's not stable
+  -- right now
   -- {
   --   'Bekaboo/dropbar.nvim',
   --   -- optional, but required for fuzzy finder support
@@ -119,5 +114,8 @@ return {
   --   keys = {
   --     { "<leader>.", function() require("dropbar.api").pick() end, {} }
   --   },
+  --   config = function ()
+  --     require("dropbar").setup()
+  --   end
   -- }
 }
