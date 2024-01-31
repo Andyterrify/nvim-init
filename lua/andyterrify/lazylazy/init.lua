@@ -103,19 +103,27 @@ return {
     }
   },
 
-  -- I like it, and want to use, but it requires nvim 0.10 and that's not stable
-  -- right now
-  -- {
-  --   'Bekaboo/dropbar.nvim',
-  --   -- optional, but required for fuzzy finder support
-  --   dependencies = {
-  --     'nvim-telescope/telescope-fzf-native.nvim'
-  --   },
-  --   keys = {
-  --     { "<leader>.", function() require("dropbar.api").pick() end, {} }
-  --   },
-  --   config = function ()
-  --     require("dropbar").setup()
-  --   end
-  -- }
+  {
+    'Bekaboo/dropbar.nvim',
+    -- optional, but required for fuzzy finder support
+    dependencies = {
+      'nvim-telescope/telescope-fzf-native.nvim'
+    },
+    keys = {
+      { "<leader>.", function() require("dropbar.api").pick() end, {} }
+    },
+    config = function()
+      require("dropbar").setup()
+    end
+  },
+
+  {
+    'prichrd/netrw.nvim',
+    config = function()
+      require("netrw").setup({
+        use_devicons = true
+      })
+    end
+
+  }
 }
