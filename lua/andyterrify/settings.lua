@@ -14,6 +14,7 @@ vim.opt.colorcolumn = "80,120"
 
 -- highlight the line the cursor is on
 vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
