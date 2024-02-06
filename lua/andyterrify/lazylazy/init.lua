@@ -30,16 +30,16 @@ return {
     -- event = "VeryLazy"
   },
 
-  {
-    'jinh0/eyeliner.nvim',
-    -- event = "InsertEnter",
-    config = function()
-      require 'eyeliner'.setup {
-        highlight_on_key = true, -- show highlights only after keypress
-        dim = true               -- dim all other characters if set to true (recommended!)
-      }
-    end
-  },
+  -- {
+  --   'jinh0/eyeliner.nvim',
+  --   -- event = "InsertEnter",
+  --   config = function()
+  --     require 'eyeliner'.setup {
+  --       highlight_on_key = true, -- show highlights only after keypress
+  --       dim = true               -- dim all other characters if set to true (recommended!)
+  --     }
+  --   end
+  -- },
 
   {
     -- Set lualine as statusline
@@ -72,8 +72,8 @@ return {
   {
     "epwalsh/obsidian.nvim",
     version = "*", -- recommended, use latest release instead of latest commit
-    lazy = true,
-    ft = "markdown",
+    -- lazy = true,
+    -- ft = "markdown",
     -- event = "VeryLazy",
     -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
     -- event = {
@@ -84,13 +84,17 @@ return {
     -- },
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
+      -- "hrsh7th/nvim-cmp",
     },
     opts = {
       workspaces = {
         {
           name = "personal",
           path = "/home/avasile/Documents/obsidian/personal-vault",
+        },
+        {
+          name = "work",
+          path = "/home/avasile/Documents/obsidian/startup-vault",
         },
       },
       notes_subdir = "notes",
