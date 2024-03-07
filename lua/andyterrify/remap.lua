@@ -2,6 +2,9 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Clear search highlight when pressing <ESC> in normal mode
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
 -- open netrw
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, {})
 
@@ -19,10 +22,10 @@ vim.keymap.set('n', '<C-m>', ":bn<CR>", { noremap = true, desc = "Next Buffer" }
 vim.keymap.set('n', '<C-n>', ":bp<CR>", { noremap = true, desc = "Previous Buffer" })
 
 -- quicker buffers
-vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true, desc = "Move to left window" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { noremap = true, desc = "Move to up window" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { noremap = true, desc = "Move to down window" })
-vim.keymap.set("n", "<C-h>", "<C-w>h", { noremap = true, desc = "Move to right window" })
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Faster exit
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Esc" })
@@ -71,6 +74,18 @@ vim.keymap.set("n", "<leader>ut", "<cmd>UndotreeToggle<CR>", {})
 -- Search project TODOs
 vim.keymap.set('n', '<leader>sn', ":TodoTelescope<CR>", { noremap = true, desc = "[S]earch [N]otes" })
 
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+-- TIP: Disable arrow keys in normal mode
+vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+
 -- attach LSP keybindings
 -- https://github.com/neovim/nvim-lspconfig#suggested-configuration
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -81,7 +96,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
         vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
         vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-        vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
+        vim.keymap.set("n", "<leader>vc", function() vim.lsp.buf.code_action() end, opts)
         vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
         vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
         vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
