@@ -1,3 +1,4 @@
+-- vim: tw=2 sw=2
 return {
   "nvim-telescope/telescope.nvim",
   event = 'VimEnter',
@@ -41,11 +42,23 @@ return {
           soft_lastused = true,
           sort_mru = true,
           ignore_current_buffer = true,
-        }
+        },
+        find_files = {
+          hidden = false,
+        },
       },
       defaults = {
+        layout_strategy = "vertical",
+        layout_config = {
+          vertical = {
+            width = 0.8,
+            height = 0.98,
+            preview_height = 0.45,
+            mirror = true
+          }
+        },
         sorting_strategy = "ascending"
-      }
+      },
     })
     -- Enable telescope extensions, if they are installed
     pcall(require('telescope').load_extension, 'fzf')
@@ -80,7 +93,7 @@ return {
     --  See `:help telescope.builtin.live_grep()` for information about particular keys
     vim.keymap.set('n', '<leader>s/', function()
       builtin.live_grep {
-        grep_open_files = true,
+        grep_open_files = false,
         prompt_title = 'Live Grep in Open Files',
       }
     end, { desc = '[S]earch [/] in Open Files' })

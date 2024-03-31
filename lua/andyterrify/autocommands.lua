@@ -8,3 +8,13 @@ vim.api.nvim_create_autocmd('TextYankPost', {
         vim.highlight.on_yank()
     end,
 })
+
+-- -- auto delete whitespace at the end of TextYankPostiens
+vim.api.nvim_create_autocmd('BufWritePre', {
+    group = AndyterrifyGroup,
+    desc = "Automatically remove whitespace from the end of lines",
+    pattern = "*",
+    callback = function()
+        vim.cmd([[%s/\s\+$//e]])
+    end
+})
