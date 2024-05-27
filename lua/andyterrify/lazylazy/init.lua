@@ -5,13 +5,26 @@ return {
     -- 'tpope/vim-sleuth',
     -- Lazy
 
+    -- {
+    --     "folke/tokyonight.nvim",
+    --     lazy = false,    -- make sure we load this during startup if it is your main colorscheme
+    --     priority = 1000, -- make sure to load this before all the other start plugins
+    --     config = function()
+    --         -- load the colorscheme here
+    --         vim.cmd([[colorscheme tokyonight-night]])
+    --     end
+    -- },
+
     {
-        "folke/tokyonight.nvim",
-        lazy = false,    -- make sure we load this during startup if it is your main colorscheme
-        priority = 1000, -- make sure to load this before all the other start plugins
+        "ellisonleao/gruvbox.nvim",
+        priority = 1000,
         config = function()
-            -- load the colorscheme here
-            vim.cmd([[colorscheme tokyonight-night]])
+            require("gruvbox").setup({
+                transparent_mode = true
+            })
+
+            vim.o.background = "dark" -- or "light" for light mode
+            vim.cmd([[colorscheme gruvbox]])
         end
     },
 
@@ -47,14 +60,14 @@ return {
         opts = {
             options = {
                 icons_enabled = true,
-                theme = 'tokyonight',
+                -- theme = 'tokyonight',
                 component_separators = '|',
                 section_separators = '',
             },
         },
     },
 
-    {                   -- Useful plugin to show you pending keybinds.
+    {                       -- Useful plugin to show you pending keybinds.
         'folke/which-key.nvim',
         event = 'VimEnter', -- Sets the loading event to 'VimEnter'
         config = function() -- This is the function that runs, AFTER loading
@@ -97,11 +110,11 @@ return {
             },
             notes_subdir = "notes",
 
-            -- copletion = {
-            --   nvim_cmp = true,
-            --   min_chars = 2,
-            --   new_notes_location = "notes_subdir"
-            -- }
+            copletion = {
+              nvim_cmp = true,
+              min_chars = 2,
+              new_notes_location = "notes_subdir"
+            }
         }
     },
 
@@ -175,26 +188,26 @@ return {
             hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
         end
     },
-    { -- Collection of various small independent plugins/modules
-        'echasnovski/mini.nvim',
-        config = function()
-            -- Better Around/Inside textobjects
-            --
-            -- Examples:
-            --  - va)  - [V]isually select [A]round [)]paren
-            --  - yinq - [Y]ank [I]nside [N]ext [']quote
-            --  - ci'  - [C]hange [I]nside [']quote
-            require('mini.ai').setup { n_lines = 500 }
+    -- { -- Collection of various small independent plugins/modules
+    --     'echasnovski/mini.nvim',
+    --     config = function()
+    --         -- Better Around/Inside textobjects
+    --         --
+    --         -- Examples:
+    --         --  - va)  - [V]isually select [A]round [)]paren
+    --         --  - yinq - [Y]ank [I]nside [N]ext [']quote
+    --         --  - ci'  - [C]hange [I]nside [']quote
+    --         require('mini.ai').setup { n_lines = 500 }
 
-            -- Add/delete/replace surroundings (brackets, quotes, etc.)
-            --
-            -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-            -- - sd'   - [S]urround [D]elete [']quotes
-            -- - sr)'  - [S]urround [R]eplace [)] [']
-            require('mini.surround').setup()
+    --         -- Add/delete/replace surroundings (brackets, quotes, etc.)
+    --         --
+    --         -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
+    --         -- - sd'   - [S]urround [D]elete [']quotes
+    --         -- - sr)'  - [S]urround [R]eplace [)] [']
+    --         require('mini.surround').setup()
 
-            -- ... and there is more!
-            --  Check out: https://github.com/echasnovski/mini.nvim
-        end,
-    }
+    --         -- ... and there is more!
+    --         --  Check out: https://github.com/echasnovski/mini.nvim
+    --     end,
+    -- }
 }
