@@ -1,7 +1,5 @@
--- vim: ts=2 sts=2 sw=2 et
 return {
   "nvim-treesitter/nvim-treesitter",
-  tag = "v0.9.2",
   build = ":TSUpdate",
   config = function()
     require("nvim-treesitter.configs").setup({
@@ -40,10 +38,10 @@ return {
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = 'gnn',
-          node_incremental = 'grn',
-          scope_incrementml = 'grc',
-          node_decremental = 'grm',
+          init_selection = "gnn", -- set to `false` to disable one of the mappings
+          node_incremental = "grn",
+          scope_incremental = "grc",
+          node_decremental = "grm",
         },
       },
     })
